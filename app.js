@@ -1,14 +1,30 @@
-const http = require("node:http");
+const http = require("http");
 
 const hostname = "127.0.0.1";
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
-  res.end("Hello, World!\n");
+
+  switch (req.url) {
+    case "/":
+      res.statusCode = 200;
+      res.end("Hello, World!\n");
+      break;
+    case "/users":
+      res.statusCode = 200;
+      res.end("Users list here\n");
+      break;
+    case "/about":
+      res.statusCode = 200;
+      res.end("About us page\n");
+      break;
+    default:
+      res.statusCode = 404;
+      res.end("Page not found\n");
+  }
 });
 
-server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
