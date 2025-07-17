@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 3000
 
 # Команда запуску сервера
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]
